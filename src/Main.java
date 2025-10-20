@@ -19,47 +19,19 @@ void main() {
         try {
             switch (opcao) {
                 case 1 -> {
-                    System.out.print("Número da conta: ");
-                    String num = sc.next();
-                    System.out.print("Nome do cliente: ");
-                    String nome = sc.next();
-                    System.out.print("Limite inicial: ");
-                    double limite = sc.nextDouble();
-                    service.criarConta(num, nome, limite);
                     System.out.println("Conta criada com sucesso!");
                 }
                 case 2 -> {
-                    System.out.print("Conta: ");
-                    String num = sc.next();
-                    System.out.print("Valor: ");
-                    double valor = sc.nextDouble();
-                    service.depositar(num, valor);
                     System.out.println("Depósito realizado!");
                 }
                 case 3 -> {
-                    System.out.print("Conta: ");
-                    String num = sc.next();
-                    System.out.print("Valor: ");
-                    double valor = sc.nextDouble();
-                    service.sacar(num, valor);
                     System.out.println("Saque realizado!");
                 }
                 case 4 -> {
-                    System.out.print("Conta origem: ");
-                    String origem = sc.next();
-                    System.out.print("Conta destino: ");
-                    String destino = sc.next();
-                    System.out.print("Valor: ");
-                    double valor = sc.nextDouble();
-                    service.transferir(origem, destino, valor);
                     System.out.println("Transferência feita!");
                 }
                 case 5 -> {
-                    System.out.print("Conta: ");
-                    String num = sc.next();
-                    System.out.print("Arquivo CSV (ex: historico.csv): ");
-                    String arq = sc.next();
-                    service.exportarTransacoes(num, arq);
+
                     System.out.println("Histórico exportado!");
                 }
             }
