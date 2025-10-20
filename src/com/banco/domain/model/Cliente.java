@@ -5,6 +5,10 @@ public class Cliente {
     private String cpf;
     private String email;
 
+    public Cliente(String nomeCliente) {
+        nome = nomeCliente;
+    }
+
     public String getNome() {
         return nome;
     }

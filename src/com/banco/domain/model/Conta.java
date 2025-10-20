@@ -1,5 +1,7 @@
 package com.banco.domain.model;
 
+import com.banco.domain.model.exceptions.SaldoInsuficienteException;
+
 import java.util.ArrayList;
 import java.util.List;
 
