@@ -1,16 +1,20 @@
 package com.banco.application.service;
 
-import com.banco.application.gateway.ContaRepository;
-import com.banco.application.gateway.OperacoesRepository;
+import com.banco.application.repository.ContaRepository;
+import com.banco.application.repository.OperacoesRepository;
 import com.banco.domain.model.Cliente;
 import com.banco.domain.model.Conta;
+import com.banco.infra.export.ExporterCsv;
+
 
 public class OperacoesService implements OperacoesRepository {
 
     private final ContaRepository contaRepository;
+    private final ExporterCsv exporterCsv;
 
-    public OperacoesService(ContaRepository contaRepository) {
+    public OperacoesService(ContaRepository contaRepository, ExporterCsv exporterCsv) {
         this.contaRepository = contaRepository;
+        this.exporterCsv = exporterCsv;
     }
 
     @Override
@@ -21,6 +25,7 @@ public class OperacoesService implements OperacoesRepository {
     @Override
     public void depositar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
+        contaRepository.buscarContaPorNumero(numeroConta);
         conta.depositar(valor);
     }
 
@@ -39,6 +44,8 @@ public class OperacoesService implements OperacoesRepository {
 
     @Override
     public void exportarTransacoes(String numeroConta, String caminhoArquivo) {
+        Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
 
+        exporterCsv.exportar(conta.getHistorico(), caminhoArquivo);
     }
 }

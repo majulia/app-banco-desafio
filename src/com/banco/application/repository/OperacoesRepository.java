@@ -1,6 +1,4 @@
-package com.banco.application.gateway;
-
-import com.banco.domain.model.Conta;
+package com.banco.application.repository;
 
 public interface OperacoesRepository {
     void criarConta(String numero, String nomeCliente, double limite);

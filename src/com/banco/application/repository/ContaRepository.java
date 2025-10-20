@@ -1,4 +1,4 @@
-package com.banco.application.gateway;
+package com.banco.application.repository;
 
 import com.banco.domain.model.Conta;
 
