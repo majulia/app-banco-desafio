@@ -13,8 +13,8 @@ public class TransferirOption implements MenuOptions{
 
 
     @Override
-    public String getOpcaoNumerica() {
-        return "4";
+    public String getNomeOpcao() {
+        return "Transferir";
     }
 
     @Override

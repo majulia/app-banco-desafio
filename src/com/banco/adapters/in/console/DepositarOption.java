@@ -13,8 +13,8 @@ private final OperacoesService operacoesService;
 
 
     @Override
-    public String getOpcaoNumerica() {
-        return "2";
+    public String getNomeOpcao() {
+        return "Fazer um depósito";
     }
 
     @Override

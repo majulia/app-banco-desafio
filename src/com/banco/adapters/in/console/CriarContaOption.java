@@ -13,8 +13,8 @@ public class CriarContaOption implements MenuOptions{
 
 
     @Override
-    public String getOpcaoNumerica() {
-        return "1";
+    public String getNomeOpcao() {
+        return "Criar conta";
     }
 
     @Override

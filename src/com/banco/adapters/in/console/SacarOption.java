@@ -13,8 +13,8 @@ public class SacarOption implements MenuOptions{
 
 
     @Override
-    public String getOpcaoNumerica() {
-        return "3";
+    public String getNomeOpcao() {
+        return "Sacar";
     }
 
     @Override

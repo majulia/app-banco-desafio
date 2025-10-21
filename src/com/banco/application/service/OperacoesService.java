@@ -25,7 +25,6 @@ public class OperacoesService implements OperacoesRepository {
     @Override
     public void depositar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-        contaRepository.buscarContaPorNumero(numeroConta);
         conta.depositar(valor);
     }
 

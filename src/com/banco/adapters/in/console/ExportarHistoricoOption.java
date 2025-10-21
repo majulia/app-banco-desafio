@@ -13,8 +13,8 @@ public class ExportarHistoricoOption implements MenuOptions{
 
 
     @Override
-    public String getOpcaoNumerica() {
-        return "5";
+    public String getNomeOpcao() {
+        return "Histórico de conta";
     }
 
     @Override
