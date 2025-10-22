@@ -22,7 +22,9 @@ public class OperacoesService implements OperacoesRepository {
     }
 
     private double gerarLimiteConta(){
-        return  500 + (4500 * random.nextDouble());
+
+       return   500 + (4500 * random.nextDouble());
+
     }
 
     @Override
@@ -32,6 +34,8 @@ public class OperacoesService implements OperacoesRepository {
         Conta conta = new Conta(limiteIncialConta, saldo, cliente, numero);
         contaRepository.salvar(conta);
         System.out.println("Conta criada com sucesso!");
+        System.out.println("Dados da conta");
+        System.out.println(conta.toString());
         return conta;
     }
 
@@ -45,6 +49,8 @@ public class OperacoesService implements OperacoesRepository {
     public void sacar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
         conta.sacar(valor);
+        System.out.println("=== Dados atualizados ===");
+        System.out.println(conta.toString());
     }
 
     @Override
@@ -52,6 +58,8 @@ public class OperacoesService implements OperacoesRepository {
         Conta origem = contaRepository.buscarContaPorNumero(contaOrigem);
         Conta destino = contaRepository.buscarContaPorNumero(contaDestino);
         origem.transferir(destino, valor);
+        System.out.println("=== Dados atualizados ===");
+        System.out.println(origem.toString());
     }
 
     @Override

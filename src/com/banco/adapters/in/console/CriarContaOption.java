@@ -25,8 +25,6 @@ public class CriarContaOption implements MenuOptions{
     public void executar() {
         Scanner scanner = new Scanner(System.in);
 
-
-
         System.out.print("CPF: ");
         String cpf = scanner.next();
         System.out.print("Nome do cliente: ");

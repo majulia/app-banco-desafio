@@ -11,9 +11,10 @@ public class ExporterCsv {
 
     public void exportar(List<Transacao> transacoes, String caminhoArquivo) {
         try (PrintWriter writer = new PrintWriter(new File(caminhoArquivo))) {
-            writer.println("Tipo,Valor,Data");
+            writer.println("===== Extrato Bancário ====");
+            writer.println("Tipo de operação - Valor - Data");
             for (Transacao t : transacoes) {
-                writer.printf("%s,%.2f%s%n", t.getTipo(), t.getValor(), t.getData());
+                writer.printf("%s - %.2f - %s%n", t.getTipo(), t.getValor(), t.getData());
             }
         } catch (IOException e) {
             throw new RuntimeException("Erro ao exportar CSV - ", e);

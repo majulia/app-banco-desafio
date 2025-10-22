@@ -51,4 +51,10 @@ public class Conta {
         return historico;
     }
 
+    @Override
+    public String toString(){
+        return String.format("Conta nº: %s\nTitular: %s\nSaldo: R$%.2f\nLimite: R$%.2f",
+                numero, cliente.getNome(), saldo, limite);
+    }
+
 }
