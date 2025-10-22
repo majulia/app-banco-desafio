@@ -1,8 +1,12 @@
 package com.banco.adapters.in.console;
 
+import com.banco.adapters.in.console.util.InputUtils;
 import com.banco.application.service.OperacoesService;
+import static com.banco.adapters.in.console.util.InputUtils.lerData;
 
+import java.time.LocalDate;
 import java.util.Scanner;
+
 
 public class CriarContaOption implements MenuOptions{
     private final OperacoesService operacoesService;
@@ -21,13 +25,20 @@ public class CriarContaOption implements MenuOptions{
     public void executar() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Número da conta: ");
-        String num = scanner.next();
+
+
+        System.out.print("CPF: ");
+        String cpf = scanner.next();
         System.out.print("Nome do cliente: ");
         String nome = scanner.next();
-        System.out.print("Limite inicial: ");
-        double limite = scanner.nextDouble();
-        operacoesService.criarConta(num, nome, limite);
-        System.out.println("Conta criada com sucesso!");
+        System.out.print("Número da conta: ");
+        String num = scanner.next();
+        System.out.println("Saldo Inicial:");
+        double saldoInicial = scanner.nextDouble();
+        LocalDate dataNascimento = InputUtils.lerData("Data de nascimento (dd/MM/yyyy):");
+
+        operacoesService.criarConta(num, nome, cpf, dataNascimento, saldoInicial);
     }
+
+
 }

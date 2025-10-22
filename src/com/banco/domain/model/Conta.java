@@ -11,12 +11,13 @@ public class Conta {
     private double saldo;
     private double limite;
     private List<Transacao> historico = new ArrayList<>();
-    
 
-    public Conta(String numero, Cliente cliente, double limite) {
-        this.numero = numero;
-        this.cliente = cliente;
+
+    public Conta(double limite, double saldo, Cliente cliente, String numero) {
         this.limite = limite;
+        this.saldo = saldo;
+        this.cliente = cliente;
+        this.numero = numero;
     }
 
     public void depositar(double valor) {
@@ -49,4 +50,5 @@ public class Conta {
     public List<Transacao> getHistorico() {
         return historico;
     }
+
 }

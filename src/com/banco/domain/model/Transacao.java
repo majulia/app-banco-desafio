@@ -10,6 +10,7 @@ public class Transacao {
     public Transacao(String tipo, double valor) {
         this.tipo = tipo;
         this.valor = valor;
+        this.data = LocalDateTime.now();
     }
 
     public String getTipo() {

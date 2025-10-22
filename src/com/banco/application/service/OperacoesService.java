@@ -6,20 +6,33 @@ import com.banco.domain.model.Cliente;
 import com.banco.domain.model.Conta;
 import com.banco.infra.export.ExporterCsv;
 
+import java.time.LocalDate;
+import java.util.Random;
+
 
 public class OperacoesService implements OperacoesRepository {
 
     private final ContaRepository contaRepository;
     private final ExporterCsv exporterCsv;
+    private final Random random = new Random();
 
     public OperacoesService(ContaRepository contaRepository, ExporterCsv exporterCsv) {
         this.contaRepository = contaRepository;
         this.exporterCsv = exporterCsv;
     }
 
+    private double gerarLimiteConta(){
+        return  500 + (4500 * random.nextDouble());
+    }
+
     @Override
-    public void criarConta(String numero, String nomeCliente, double limite) {
-        Conta conta = new Conta(numero, new Cliente(nomeCliente), limite);
+    public Conta criarConta(String numero, String nomeCliente, String cpf, LocalDate dataNascimento, double saldo) {
+        double limiteIncialConta = gerarLimiteConta();
+        Cliente cliente = new Cliente(nomeCliente, cpf, dataNascimento);
+        Conta conta = new Conta(limiteIncialConta, saldo, cliente, numero);
+        contaRepository.salvar(conta);
+        System.out.println("Conta criada com sucesso!");
+        return conta;
     }
 
     @Override
