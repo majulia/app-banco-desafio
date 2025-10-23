@@ -6,18 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Conta {
-    private String numero;
+    private String agencia;
+    private String numeroDaConta;
     private Cliente cliente;
     private double saldo;
     private double limite;
     private List<Transacao> historico = new ArrayList<>();
 
 
-    public Conta(double limite, double saldo, Cliente cliente, String numero) {
+    public Conta(double limite, double saldo, Cliente cliente, String agencia, String numeroDaConta) {
         this.limite = limite;
         this.saldo = saldo;
         this.cliente = cliente;
-        this.numero = numero;
+        this.agencia = agencia;
+        this.numeroDaConta = numeroDaConta;
     }
 
     public void depositar(double valor) {
@@ -35,12 +37,12 @@ public class Conta {
     public void transferir(Conta destino, double valor) {
         this.sacar(valor);
         destino.depositar(valor);
-        historico.add(new Transacao("Transferência para " + destino.getNumero(), valor));
+        historico.add(new Transacao("Transferência para " + destino.getNumeroDaConta(), valor));
     }
 
 
-    public String getNumero() {
-        return numero;
+    public String getNumeroDaConta() {
+        return numeroDaConta;
     }
 
     public double getSaldo() {
@@ -53,8 +55,8 @@ public class Conta {
 
     @Override
     public String toString(){
-        return String.format("Conta nº: %s\nTitular: %s\nSaldo: R$%.2f\nLimite: R$%.2f",
-                numero, cliente.getNome(), saldo, limite);
+        return String.format("Agencia: %s Conta nº: %s\nTitular: %s\nSaldo: R$%.2f\nLimite: R$%.2f",
+                agencia, numeroDaConta, cliente.getNome(), saldo, limite);
     }
 
 }

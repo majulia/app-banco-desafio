@@ -29,13 +29,13 @@ public class CriarContaOption implements MenuOptions{
         String cpf = scanner.next();
         System.out.print("Nome do cliente: ");
         String nome = scanner.next();
-        System.out.print("Número da conta: ");
-        String num = scanner.next();
+        System.out.print("Telefone do cliente: ");
+        String telefone = scanner.next();
         System.out.println("Saldo Inicial:");
         double saldoInicial = scanner.nextDouble();
         LocalDate dataNascimento = InputUtils.lerData("Data de nascimento (dd/MM/yyyy):");
 
-        operacoesService.criarConta(num, nome, cpf, dataNascimento, saldoInicial);
+        operacoesService.criarConta(nome, cpf, telefone, dataNascimento, saldoInicial);
     }
 
 

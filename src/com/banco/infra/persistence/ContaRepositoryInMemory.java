@@ -11,7 +11,7 @@ public class ContaRepositoryInMemory implements ContaRepository {
 
     @Override
     public void salvar(Conta conta) {
-        contaMap.put(conta.getNumero(), conta);
+        contaMap.put(conta.getNumeroDaConta(), conta);
     }
 
     @Override

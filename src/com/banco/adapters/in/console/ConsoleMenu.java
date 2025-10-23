@@ -15,7 +15,7 @@ public class ConsoleMenu {
         int escolha;
 
         do {
-            System.out.println("\n === Menu Principal ===");
+            System.out.println("\n ==== Menu Principal ====");
             for (int i = 0; i < opcoes.size(); i++) {
                 System.out.printf("%d - %s%n", i + 1, opcoes.get(i).getNomeOpcao());
             }
@@ -28,6 +28,6 @@ public class ConsoleMenu {
             }
         } while (escolha != 0);
 
-        System.out.println("Saindo do sistema");
+        System.out.println("==== Saindo do sistema ====");
     }
 }

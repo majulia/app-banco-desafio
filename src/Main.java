@@ -8,8 +8,10 @@ void main() {
     var exporter = new ExporterCsv();
     var operacoesService = new OperacoesService(repo, exporter);
 
-    var menu = new ConsoleMenu(List.of(
+    ConsoleMenu menu;
+    menu = new ConsoleMenu(List.of(
             new CriarContaOption(operacoesService),
+            new ConsultaSaldoOption(operacoesService),
             new DepositarOption(operacoesService),
             new SacarOption(operacoesService),
             new TransferirOption(operacoesService),

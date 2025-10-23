@@ -27,6 +27,5 @@ public class TransferirOption implements MenuOptions{
         System.out.print("Valor: ");
         double valor = scanner.nextDouble();
         operacoesService.transferir(origem, destino, valor);
-        System.out.println("Transferência feita!");
     }
 }

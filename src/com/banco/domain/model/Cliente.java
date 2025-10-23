@@ -5,15 +5,19 @@ import java.time.LocalDate;
 public class Cliente {
     private String nome;
     private String cpf;
-    private String email;
+    private String telefone;
     private LocalDate dataNascimento;
 
 
-    public Cliente(String nomeCliente, String cpf, LocalDate dataNascimento) {
+    public Cliente(String nomeCliente, String cpf, String telefone, LocalDate dataNascimento) {
         nome = nomeCliente;
+        this.telefone = telefone;
         this.cpf = cpf;
-        this.email = email;
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getTelefone() {
+        return telefone;
     }
 
     public String getNome() {
@@ -22,10 +26,6 @@ public class Cliente {
 
     public String getCpf() {
         return cpf;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public LocalDate getDataNascimento() {
