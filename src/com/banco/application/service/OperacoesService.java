@@ -24,7 +24,7 @@ public class OperacoesService implements OperacoesRepository {
     }
 
     private double gerarLimiteConta(){
-       return   500 + (4500 * random.nextDouble());
+       return   100 + (5500 * random.nextDouble());
     }
 
     private String gerarAgencia(){
@@ -51,6 +51,14 @@ public class OperacoesService implements OperacoesRepository {
         System.out.println("==== Dados da conta ====");
         System.out.println(conta.toString());
         return conta;
+    }
+
+    @Override
+    public void consultarSaldo(String numeroConta) {
+        Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
+
+        System.out.println("==== Dados atualizados ====");
+        System.out.println(conta.toString());
     }
 
     @Override
@@ -92,12 +100,5 @@ public class OperacoesService implements OperacoesRepository {
         exporterCsv.exportar(conta.getHistorico(), caminhoArquivo);
     }
 
-    @Override
-    public void consultarSaldo(String numeroConta) {
-        Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-
-        System.out.println("==== Dados atualizados ====");
-        System.out.println(conta.toString());
-    }
 
 }

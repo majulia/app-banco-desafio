@@ -1,16 +1,20 @@
 package com.banco.domain.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Transacao {
     private String tipo;
     private double valor;
-    private LocalDateTime data;
+    private LocalDate data;
+    private LocalTime hora;
 
     public Transacao(String tipo, double valor) {
         this.tipo = tipo;
         this.valor = valor;
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
+        this.hora = LocalTime.now();
     }
 
 
@@ -23,7 +27,11 @@ public class Transacao {
         return valor;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
+    }
+
+    public LocalTime getHora(){
+        return hora;
     }
 }

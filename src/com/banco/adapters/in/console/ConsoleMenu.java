@@ -1,5 +1,9 @@
 package com.banco.adapters.in.console;
 
+import com.banco.application.service.OperacoesService;
+import com.banco.infra.export.ExporterCsv;
+import com.banco.infra.persistence.ContaRepositoryInMemory;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,4 +34,6 @@ public class ConsoleMenu {
 
         System.out.println("==== Saindo do sistema ====");
     }
+
+
 }

@@ -23,7 +23,7 @@ public class ExportarHistoricoOption implements MenuOptions{
 
         System.out.print("Conta: ");
         String num = scanner.next();
-        System.out.print("Arquivo CSV (ex: historico.csv): ");
+        System.out.print("Nome do arquivo CSV (ex: historico.csv): ");
         String arq = scanner.next();
         operacoesService.exportarTransacoes(num, arq);
         System.out.println("Histórico exportado com sucesso!");
