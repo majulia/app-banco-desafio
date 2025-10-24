@@ -1,5 +1,6 @@
 package com.banco.adapters.in.console;
 
+import com.banco.application.exceptions.OperacoesExceptions;
 import com.banco.application.service.OperacoesService;
 
 import java.util.Scanner;
@@ -21,6 +22,15 @@ public class AlterarLimiteOption implements MenuOptions{
         Scanner scanner = new Scanner(System.in);
         System.out.print("Numero da Conta: ");
         String numeroConta = scanner.next();
-        operacoesService.alterarLimite(numeroConta);
+        try {
+            System.out.println("Processando a operação...");
+            Thread.sleep(2000);
+            operacoesService.alterarLimite(numeroConta);
+        }catch (OperacoesExceptions e)
+        {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

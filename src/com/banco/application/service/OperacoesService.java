@@ -44,7 +44,7 @@ public class OperacoesService implements OperacoesRepository {
     public void consultarSaldo(String numeroConta) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
         if (conta == null){
-           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+           throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
         }
         System.out.println("==== Consultando os dados atualizados ====");
         System.out.println(conta.toString());
@@ -54,7 +54,7 @@ public class OperacoesService implements OperacoesRepository {
     public void depositar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
         if (conta == null){
-           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+           throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
         } else {
             conta.depositar(valor);
             System.out.println("Deposito realizado com sucesso!");
@@ -68,7 +68,7 @@ public class OperacoesService implements OperacoesRepository {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
 
         if (conta == null){
-           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+           throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
         } else if (valor > conta.getSaldo()){
             conta.sacar(valor);
             System.out.println("Saque realizado com sucesso!");
@@ -90,6 +90,7 @@ public class OperacoesService implements OperacoesRepository {
         if (origem != null && destino != null) {
             origem.transferir(destino, valor);
             System.out.println("Transferencia realizada com sucesso!");
+
             System.out.println("==== Dados atualizados ====");
             System.out.println(origem.toString());
         } else {
@@ -102,10 +103,12 @@ public class OperacoesService implements OperacoesRepository {
     public void alterarLimite(String numeroConta){
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
         if (conta == null){
-           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+           throw new OperacoesExceptions("Conta " + numeroConta + " não encontrada");
         } else {
             double novoLimite = conta.getSaldo() + GeradorDeNumeros.gerarLimiteConta();
             conta.setLimite(novoLimite);
+            String numeroFormatado = String.format("%.2f", novoLimite);
+            System.out.println("Limite Alterado com sucesso! Novo limite da conta: "+ numeroFormatado);
         }
         contaRepository.salvar(conta);
     }
@@ -114,9 +117,10 @@ public class OperacoesService implements OperacoesRepository {
     public void exportarTransacoes(String numeroConta, String caminhoArquivo) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
         if (conta == null){
-            throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+            throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
         } else {
             exporterCsv.exportar(conta.getHistorico(), caminhoArquivo);
+            System.out.println("Histórico exportado com sucesso!");
         }
     }
 

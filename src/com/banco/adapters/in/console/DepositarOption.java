@@ -30,7 +30,7 @@ private final OperacoesService operacoesService;
             System.out.println("Tentando sacar R$" + valor + "...");
             Thread.sleep(2000);
             operacoesService.depositar(numeroConta, valor);
-            System.out.println("Depósito realizado com sucesso!");
+
         } catch (
                 OperacoesExceptions e) {
             System.out.println("Erro: " + e.getMessage());

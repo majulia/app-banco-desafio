@@ -15,6 +15,7 @@ void main() {
             new SacarOption(operacoesService),
             new DepositarOption(operacoesService),
             new TransferirOption(operacoesService),
+            new AlterarLimiteOption(operacoesService),
             new ExportarHistoricoOption(operacoesService)
     ));
 
