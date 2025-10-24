@@ -12,8 +12,8 @@ void main() {
     menu = new ConsoleMenu(List.of(
             new CriarContaOption(operacoesService),
             new ConsultaSaldoOption(operacoesService),
-            new DepositarOption(operacoesService),
             new SacarOption(operacoesService),
+            new DepositarOption(operacoesService),
             new TransferirOption(operacoesService),
             new ExportarHistoricoOption(operacoesService)
     ));

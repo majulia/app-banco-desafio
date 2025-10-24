@@ -21,8 +21,11 @@ public class ExportarHistoricoOption implements MenuOptions{
     public void executar() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Conta: ");
+        System.out.print("Numero da Conta com dígito (xxxx-x): ");
         String num = scanner.next();
+
+        operacoesService.alterarLimite(num);
+
         System.out.print("Nome do arquivo CSV (ex: historico.csv): ");
         String arq = scanner.next();
         operacoesService.exportarTransacoes(num, arq);

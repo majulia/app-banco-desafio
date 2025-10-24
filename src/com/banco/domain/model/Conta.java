@@ -53,6 +53,10 @@ public class Conta {
         return historico;
     }
 
+    public void setLimite(double limite) {
+        this.limite = limite;
+    }
+
     @Override
     public String toString(){
         return String.format("Agencia: %s Conta nº: %s\nTitular: %s\nSaldo: R$%.2f\nLimite: R$%.2f",

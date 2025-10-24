@@ -1,13 +1,14 @@
 package com.banco.application.service;
 
+import com.banco.application.exceptions.OperacoesExceptions;
 import com.banco.application.repository.ContaRepository;
 import com.banco.application.repository.OperacoesRepository;
 import com.banco.domain.model.Cliente;
 import com.banco.domain.model.Conta;
 import com.banco.infra.export.ExporterCsv;
+import com.banco.application.GeradorDeNumeros;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Random;
 
@@ -16,6 +17,7 @@ public class OperacoesService implements OperacoesRepository {
 
     private final ContaRepository contaRepository;
     private final ExporterCsv exporterCsv;
+    private GeradorDeNumeros geradorDeNumeros;
     private final Random random = new Random();
 
     public OperacoesService(ContaRepository contaRepository, ExporterCsv exporterCsv) {
@@ -23,27 +25,12 @@ public class OperacoesService implements OperacoesRepository {
         this.exporterCsv = exporterCsv;
     }
 
-    private double gerarLimiteConta(){
-       return   100 + (5500 * random.nextDouble());
-    }
-
-    private String gerarAgencia(){
-        int numero = random.nextInt(99) + 1;
-        return String.format("00%02d", numero);
-    }
-
-    private String gerarNumeroConta(){
-        int numeroConta = 1000 + random.nextInt(9000) + 1; //1000-9999 para gerar a conta
-        int digito = random.nextInt(10); //0-9
-        return String.format("%d-%d", numeroConta,digito);
-    }
-
 
     @Override
     public Conta criarConta( String nomeCliente, String cpf, String telefone, LocalDate dataNascimento, double saldo) {
-        double limiteIncialConta = gerarLimiteConta();
-        String agencia = gerarAgencia();
-        String numeroDaConta = gerarNumeroConta();
+        double limiteIncialConta =  GeradorDeNumeros.gerarLimiteConta();
+        String agencia = GeradorDeNumeros.gerarAgencia();
+        String numeroDaConta = GeradorDeNumeros.gerarNumeroConta();
         Cliente cliente = new Cliente(nomeCliente, cpf, telefone, dataNascimento);
         Conta conta = new Conta(limiteIncialConta, saldo, cliente, agencia, numeroDaConta);
         contaRepository.salvar(conta);
@@ -56,15 +43,22 @@ public class OperacoesService implements OperacoesRepository {
     @Override
     public void consultarSaldo(String numeroConta) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-
-        System.out.println("==== Dados atualizados ====");
+        if (conta == null){
+           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+        }
+        System.out.println("==== Consultando os dados atualizados ====");
         System.out.println(conta.toString());
     }
 
     @Override
     public void depositar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-        conta.depositar(valor);
+        if (conta == null){
+           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+        } else {
+            conta.depositar(valor);
+            System.out.println("Deposito realizado com sucesso!");
+        }
         System.out.println("==== Dados atualizados ====");
         System.out.println(conta.toString());
     }
@@ -72,7 +66,13 @@ public class OperacoesService implements OperacoesRepository {
     @Override
     public void sacar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-        conta.sacar(valor);
+
+        if (conta == null){
+           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+        } else if (valor > conta.getSaldo()){
+            conta.sacar(valor);
+            System.out.println("Saque realizado com sucesso!");
+        }
         System.out.println("==== Dados atualizados ====");
         System.out.println(conta.toString());
     }
@@ -87,17 +87,37 @@ public class OperacoesService implements OperacoesRepository {
         } else {
         Conta origem = contaRepository.buscarContaPorNumero(contaOrigem);
         Conta destino = contaRepository.buscarContaPorNumero(contaDestino);
-        origem.transferir(destino, valor);
-        System.out.println("==== Dados atualizados ====");
-        System.out.println(origem.toString());
+        if (origem != null && destino != null) {
+            origem.transferir(destino, valor);
+            System.out.println("Transferencia realizada com sucesso!");
+            System.out.println("==== Dados atualizados ====");
+            System.out.println(origem.toString());
+        } else {
+            throw new OperacoesExceptions("Conta de Origem ou Destino não encontrada!");
         }
+
+        }
+    }
+
+    public void alterarLimite(String numeroConta){
+        Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
+        if (conta == null){
+           throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+        } else {
+            double novoLimite = conta.getSaldo() + GeradorDeNumeros.gerarLimiteConta();
+            conta.setLimite(novoLimite);
+        }
+        contaRepository.salvar(conta);
     }
 
     @Override
     public void exportarTransacoes(String numeroConta, String caminhoArquivo) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-
-        exporterCsv.exportar(conta.getHistorico(), caminhoArquivo);
+        if (conta == null){
+            throw new OperacoesExceptions("Conta" + numeroConta + "não encontrada");
+        } else {
+            exporterCsv.exportar(conta.getHistorico(), caminhoArquivo);
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.banco.adapters.in.console;
 
+import com.banco.application.exceptions.OperacoesExceptions;
 import com.banco.application.service.OperacoesService;
 
 import java.util.Scanner;
@@ -21,11 +22,20 @@ private final OperacoesService operacoesService;
     public void executar() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Conta: ");
-        String num = scanner.next();
+        System.out.print("Numero da Conta com dígito(xxxx-x): ");
+        String numeroConta = scanner.next();
         System.out.print("Valor: ");
         double valor = scanner.nextDouble();
-        operacoesService.depositar(num, valor);
-        System.out.println("Depósito realizado com sucesso!");
+        try {
+            System.out.println("Tentando sacar R$" + valor + "...");
+            Thread.sleep(2000);
+            operacoesService.depositar(numeroConta, valor);
+            System.out.println("Depósito realizado com sucesso!");
+        } catch (
+                OperacoesExceptions e) {
+            System.out.println("Erro: " + e.getMessage());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
