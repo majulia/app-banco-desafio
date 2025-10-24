@@ -107,8 +107,8 @@ public class OperacoesService implements OperacoesRepository {
         } else {
             double novoLimite = conta.getSaldo() + GeradorDeNumeros.gerarLimiteConta();
             conta.setLimite(novoLimite);
-            String numeroFormatado = String.format("%.2f", novoLimite);
-            System.out.println("Limite Alterado com sucesso! Novo limite da conta: "+ numeroFormatado);
+            String novoLimiteFormatado = String.format("%.2f", novoLimite);
+            System.out.println("Limite Alterado com sucesso! Novo limite da conta: "+ novoLimiteFormatado);
         }
         contaRepository.salvar(conta);
     }

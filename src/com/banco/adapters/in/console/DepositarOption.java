@@ -27,7 +27,7 @@ private final OperacoesService operacoesService;
         System.out.print("Valor: ");
         double valor = scanner.nextDouble();
         try {
-            System.out.println("Tentando sacar R$" + valor + "...");
+            System.out.println("Processando o depósito...");
             Thread.sleep(2000);
             operacoesService.depositar(numeroConta, valor);
 
