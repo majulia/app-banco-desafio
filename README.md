@@ -1,4 +1,4 @@
-# Test Software Developer - Menu
+# Desafio Aplicação Bancária
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=%20Finalizado&color=GREEN&style=for-the-badge)
 
 <p align="center">
@@ -17,8 +17,9 @@
 - Java OpenJDK 25
 
 ## Observações / Instruções
-:warning: Ao Executar o console, obrigatório usar a opção 1 - Criar conta para testar outras funcionalidades simuladas. 
-Além dos requisistos mandatórios, quis tentar usar esse desafio como treinamento para a arquitetura hexagonal mesmo não sendo uma API.
+:warning: Para executar a aplicação, vá até o arquivo **Main.java**.  Assim que a aplicação iniciar, **é obrigatório usar a opção "1 - Criar conta" do menu principal** para testar outras funcionalidades simuladas. 
+
+Além dos requisistos mandatórios, quis tentar usar esse desafio como treinamento para a arquitetura hexagonal mesmo não sendo uma API. *(Futuramente será refatorado quando tiver o domínio desse conhecimento :bowtie:)*
 
 ## Desafio
 
