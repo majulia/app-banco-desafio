@@ -19,7 +19,7 @@
 ## Observações / Instruções
 :warning: Para executar a aplicação, vá até o arquivo **Main.java**.  Assim que a aplicação iniciar, **é obrigatório usar a opção "1 - Criar conta" do menu principal** para testar outras funcionalidades simuladas. 
 
-Além dos requisistos mandatórios, quis tentar usar esse desafio como treinamento para a arquitetura hexagonal mesmo não sendo uma API. *(Futuramente será refatorado quando tiver o domínio desse conhecimento :bowtie:)*
+Além dos requisitos mandatórios, tentei usar esse desafio como treinamento para a arquitetura hexagonal mesmo não sendo uma API. *(Futuramente será refatorado quando tiver o domínio desse conhecimento :bowtie:)*
 
 ## Desafio
 
