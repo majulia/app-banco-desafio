@@ -8,18 +8,20 @@ import java.util.List;
 public class Conta {
     private String agencia;
     private String numeroDaConta;
+    private TipoConta tipoConta;
     private Cliente cliente;
     private double saldo;
     private double limite;
     private List<Transacao> historico = new ArrayList<>();
 
 
-    public Conta(double limite, double saldo, Cliente cliente, String agencia, String numeroDaConta) {
+    public Conta(double limite, double saldo, Cliente cliente, String agencia, String numeroDaConta, TipoConta tipoConta) {
         this.limite = limite;
         this.saldo = saldo;
         this.cliente = cliente;
         this.agencia = agencia;
         this.numeroDaConta = numeroDaConta;
+        this.tipoConta = tipoConta;
     }
 
     public void depositar(double valor) {
@@ -57,10 +59,14 @@ public class Conta {
         this.limite = limite;
     }
 
+    public TipoConta getTipoConta() {
+        return tipoConta;
+    }
+
     @Override
     public String toString(){
-        return String.format("Agencia: %s Conta nº: %s\nTitular: %s\nSaldo: R$%.2f\nLimite: R$%.2f",
-                agencia, numeroDaConta, cliente.getNome(), saldo, limite);
+        return String.format("Agencia: %s Conta nº: %s\nTitular: %s \nTipo de Conta: %s \nSaldo: R$%.2f\nLimite: R$%.2f",
+                agencia, numeroDaConta, cliente.getNome(), tipoConta, saldo, limite);
     }
 
 }

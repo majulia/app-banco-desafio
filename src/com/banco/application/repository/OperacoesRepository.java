@@ -1,11 +1,12 @@
 package com.banco.application.repository;
 
 import com.banco.domain.model.Conta;
+import com.banco.domain.model.TipoConta;
 
 import java.time.LocalDate;
 
 public interface OperacoesRepository {
-    Conta criarConta(String nomeCliente, String cpf, String telefone,LocalDate dataNascimento, double saldo);
+    Conta criarConta(String nomeCliente, String cpf, String telefone, LocalDate dataNascimento, double saldo, TipoConta tipoConta);
     void consultarSaldo(String numeroConta);
     void depositar(String numeroConta, double valor);
     void sacar(String numeroConta, double valor);

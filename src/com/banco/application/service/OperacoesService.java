@@ -5,6 +5,7 @@ import com.banco.application.repository.ContaRepository;
 import com.banco.application.repository.OperacoesRepository;
 import com.banco.domain.model.Cliente;
 import com.banco.domain.model.Conta;
+import com.banco.domain.model.TipoConta;
 import com.banco.infra.export.ExporterCsv;
 import com.banco.application.GeradorDeNumeros;
 
@@ -27,12 +28,12 @@ public class OperacoesService implements OperacoesRepository {
 
 
     @Override
-    public Conta criarConta( String nomeCliente, String cpf, String telefone, LocalDate dataNascimento, double saldo) {
+    public Conta criarConta(String nomeCliente, String cpf, String telefone, LocalDate dataNascimento, double saldo, TipoConta tipoConta) {
         double limiteIncialConta =  GeradorDeNumeros.gerarLimiteConta();
         String agencia = GeradorDeNumeros.gerarAgencia();
         String numeroDaConta = GeradorDeNumeros.gerarNumeroConta();
         Cliente cliente = new Cliente(nomeCliente, cpf, telefone, dataNascimento);
-        Conta conta = new Conta(limiteIncialConta, saldo, cliente, agencia, numeroDaConta);
+        Conta conta = new Conta(limiteIncialConta, saldo, cliente, agencia, numeroDaConta, tipoConta);
         contaRepository.salvar(conta);
         System.out.println("Conta criada com sucesso!");
         System.out.println("==== Dados da conta ====");
