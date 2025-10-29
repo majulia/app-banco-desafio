@@ -2,10 +2,10 @@
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=%20Finalizado&color=GREEN&style=for-the-badge)
 
 <p align="center">
-<a href="#sobre">Desafio </a> •
-<a href="#sobre">Pré Requisitos</a> • 
-<a href="#sobre">Observações / Instruções </a>  • 
-<a href="#sobre"> Diagrama </a>
+<a href="#desafio">Desafio </a> •
+<a href="#pré-requisitos">Pré Requisitos</a> • 
+<a href="#observações--instruções">Observações / Instruções </a>  • 
+<a href="#diagrama-de-classes">Diagrama de Classes</a>
 
 ## Desafio
 
