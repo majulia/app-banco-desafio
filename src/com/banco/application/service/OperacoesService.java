@@ -67,14 +67,11 @@ public class OperacoesService implements OperacoesRepository {
     @Override
     public void sacar(String numeroConta, double valor) {
         Conta conta = contaRepository.buscarContaPorNumero(numeroConta);
-
         if (conta == null){
-           throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
-        } else if (valor > conta.getSaldo()){
-            conta.sacar(valor);
-            System.out.println("Saque realizado com sucesso!");
+            throw new OperacoesExceptions("Conta nº " + numeroConta + " não encontrada");
         }
-        System.out.println("==== Dados atualizados ====");
+        conta.sacar(valor);
+        System.out.println("Saque realizado com sucesso!");
         System.out.println(conta.toString());
     }
 
